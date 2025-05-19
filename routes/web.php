@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 //INI DATABASE
-use App\Http\Controllers\RegisterController;
+// Route::post('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 
 //INI AUTHENTIFIKASI
 Route::get('/auth/login', function () {
     return view('auth.login.login', [
         'title' => 'Login'
     ]);
-});
+})->name('login');
 
-Route::get('/auth/daftar', function () {
-    return view('auth.daftar.daftar', [
-        'title' => 'Daftar'
-    ]);
-});
+// Route::get('/auth/daftar', function () {
+//     return view('auth.daftar.daftar', [
+//         'title' => 'Daftar'
+//     ]);
+// });
 //INI ADMIN
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard.dashboard', [

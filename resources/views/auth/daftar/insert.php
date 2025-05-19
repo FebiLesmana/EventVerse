@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "EventVerse";
+$db = "eventverse";
 
 $conn = new mysqli($host, $user, $pass, $db);
 

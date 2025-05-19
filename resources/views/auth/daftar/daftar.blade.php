@@ -7,12 +7,13 @@
     <p class="text-center text-gray-500 text-sm mb-8">Sign up to get started</p>
 
     <form action="{{ route('register.store') }}" method="POST" class="px-6 max-w-md mx-auto">
-  @csrf
+        @csrf
     <!-- Nama Input -->
     <div class="mb-4 relative">
       <input
         type="text"
         placeholder="Nama"
+        name = "nama"
         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
       />
       <div class="absolute right-4 top-[calc(50%-10px)] pointer-events-none">
@@ -30,6 +31,7 @@
       <input
         type="text"
         placeholder="NIM"
+        name = "nim"
         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
       />
       <div class="absolute right-4 top-[calc(50%-10px)] pointer-events-none">
@@ -46,6 +48,7 @@
     <div class="mb-4 relative">
       <input
         type="email"
+        name = "email"
         placeholder="Email"
         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
       />
@@ -64,6 +67,7 @@
       <input
         type="password"
         placeholder="Password"
+        name = "password"
         class="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
       />
       <div class="absolute right-4 top-[calc(50%-10px)]">
@@ -76,7 +80,7 @@
     </div>
 
     <!-- Sign Un Button -->
-    <button class="w-full bg-yellow-400 rounded-xl py-3 text-white font-semibold text-lg mb-6 hover:bg-yellow-500 transition">Daftar</button>
+    <button type="submit" class="w-full bg-yellow-400 rounded-xl py-3 text-white font-semibold text-lg mb-6 hover:bg-yellow-500 transition">Daftar</button>
 
   <!-- Bottom Text -->
   <div class="text-center mb-10 px-6">
