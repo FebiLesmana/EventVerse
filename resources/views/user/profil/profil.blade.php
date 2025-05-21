@@ -6,19 +6,15 @@
         <div
             class="bg-yellow-400 rounded-lg flex items-center gap-4 px-4 py-3 mb-6 max-w-xs"
         >
-            <img
-                alt="Gambar Profil"
-                class="w-10 h-10 rounded-full object-cover"
-                height="40"
-                src="https://storage.googleapis.com/a1aa/image/0905cda3-81fe-4129-5cd8-23ce8fcbb96e.jpg"
-                width="40"
-            />
             <div>
-                <p class="text-white font-semibold text-sm leading-tight">
-                    Aliya Putri
-                </p>
-                <p class="text-yellow-100 text-xs leading-tight">@aliya</p>
-            </div>
+        <p class="text-white font-semibold text-xl leading-tight">
+        {{ Auth::user()->nama }}
+        </p>
+        <p class="text-yellow-100 text-l leading-tight">
+        {{ Auth::user()->nim }}
+    </p>
+</div>
+
         </div>
         <div class="bg-white rounded-xl">
             <ul class="divide-y divide-gray-100">

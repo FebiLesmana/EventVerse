@@ -12,6 +12,8 @@
   <!-- CSS iziToast -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css" />
 
+  <script src="/public/js/favorit.js">
+
   <!-- JS iziToast -->
   <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
   

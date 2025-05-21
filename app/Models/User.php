@@ -13,9 +13,10 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public function favoriteEvents()
-    {
+{
     return $this->belongsToMany(EventList::class, 'favorites', 'user_id', 'event_id')->withTimestamps();
-    }
+}
+
 
     /**
      * The attributes that are mass assignable.

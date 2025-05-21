@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\RegisterController;
@@ -24,6 +25,12 @@ use App\Http\Controllers\EventFavoriteController;
 Route::get('/register', [RegisterController::class, 'index'])->name('register-index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register-store');
 
+Route::get('/dashboard', function () {return view('dashboard');})->middleware('auth');
+
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login-store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/dashboard', [EventController::class, 'dashboard'])->name('user-dashboard');
 Route::post('/event', [EventController::class, 'store'])->name('event-store');
 
@@ -37,8 +44,14 @@ Route::post('/peserta', [PesertaController::class, 'store'])->name('peserta-stor
 
 Route::get('/eventget', [EventController::class, 'index']);
 
-Route::post('/event/favorite/{event}', [EventController::class, 'toggleFavorite'])->name('event-favorite');
-Route::get('/disukai', [EventController::class, 'favoriteList'])->name('event-favorites');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/event/{id}/favorite', [EventController::class, 'toggleFavorite'])->name('event.favorites');
+    Route::get('/disukai', [EventController::class, 'showFavorites'])->name('event.favorites');
+});
+
+
+
+
 
 
 

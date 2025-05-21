@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Eventlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -16,8 +17,6 @@ class EventController extends Controller
 
     return view('user.details.detailevent', compact('title', 'dataEvent'));
 }
-
-
     public function dashboard()
     {
      // Mengambil data event terbaru dari database (atau sesuai kebutuhan)
@@ -85,4 +84,28 @@ class EventController extends Controller
             'message' => 'Event berhasil didaftarkan'
         ]);
     }
+
+    public function toggleFavorite($id)
+{
+    $user = auth()->user(); // pastikan user login
+    $event = EventList::findOrFail($id);
+
+    if ($user->favoriteEvents()->where('event_id', $id)->exists()) {
+        $user->favoriteEvents()->detach($id); // hapus dari favorit
+        return response()->json(['status' => 'removed']);
+    } else {
+        $user->favoriteEvents()->attach($id); // tambahkan ke favorit
+        return response()->json(['status' => 'added']);
+    }
+}
+
+public function showFavorites()
+{
+    $user = auth()->user();
+    $favoriteEvents = $user->favoriteEvents()->latest()->get();
+
+    return view('user.disukai.suka', compact('favoriteEvents'));
+}
+
+
 }

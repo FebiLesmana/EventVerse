@@ -52,8 +52,8 @@
       <p class="text-gray-500 text-xs mb-1">{{ $item->nama }}</p>
       <h3 class="font-semibold text-lg leading-tight">{{ $item->organizer }}</h3>
     </div>
-    <button class="ml-auto p-2 rounded-full" type="button" onclick="addtofavorit($item->id)">
-      <i class="hgi hgi-stroke hgi-favourite"></i>
+    <button class="ml-auto p-2 rounded-full" type="button" onclick="addtofavorit({{ $item->id }})">
+    <i class="hgi hgi-stroke hgi-favourite"></i>
     </button>
   </div>
 </a>

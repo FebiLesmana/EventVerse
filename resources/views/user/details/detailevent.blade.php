@@ -20,12 +20,10 @@
 
   <!-- Tombol Daftar -->
   <div>
-    <button
-      class="bg-yellow-400 text-white font-bold w-full rounded-full py-4 text-lg shadow-md hover:bg-yellow-500 transition duration-200"
-      type="button"
-    >
-      Daftar Sekarang
-    </button>
+    <a href="/user/register_user" 
+   class="bg-yellow-400 text-white font-bold w-full rounded-full py-4 text-lg shadow-md hover:bg-yellow-500 transition duration-200 inline-block text-center">
+   Daftar Sekarang
+  </a>
   </div>
 
 </div>
