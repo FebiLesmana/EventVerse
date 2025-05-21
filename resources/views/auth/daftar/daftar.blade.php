@@ -6,7 +6,7 @@
     <h1 class="text-center font-bold text-gray-800 text-xl mb-1">Create Account</h1>
     <p class="text-center text-gray-500 text-sm mb-8">Sign up to get started</p>
 
-    <form action="{{ route('register.store') }}" method="POST" class="px-6 max-w-md mx-auto">
+    <form action="{{ route('register-store') }}" method="POST" class="px-6 max-w-md mx-auto">
         @csrf
     <!-- Nama Input -->
     <div class="mb-4 relative">

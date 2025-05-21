@@ -96,11 +96,10 @@
             </div>
         <!-- Ajukan event -->
         <div>
-    <button
-      class="bg-yellow-400 text-white font-bold w-full rounded-full py-4 text-lg shadow-md hover:bg-yellow-500 transition duration-200"
-      type="button">
-      Ajukan Event
-    </button>
+     <a href="/user/register_event" 
+   class="bg-yellow-400 text-white font-bold w-full rounded-full py-4 text-lg shadow-md hover:bg-yellow-500 transition duration-200 inline-block text-center">
+   Ajukan Event
+</a>
   </div>
 
   @include('components.nav')

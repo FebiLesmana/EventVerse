@@ -31,7 +31,7 @@
 
   <!-- FontAwesome for Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  <script src="{{ asset('js/') }}"></script>
   {{-- session --}}
   @if (session('message'))
     @php

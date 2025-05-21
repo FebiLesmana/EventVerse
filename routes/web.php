@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventFavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +20,27 @@ use App\Http\Controllers\RegisterController;
 
 //INI DATABASE
 // Route::post('/register', [RegisterController::class, 'create'])->name('register.create');
-Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register-index');
+Route::post('/register', [RegisterController::class, 'store'])->name('register-store');
+
+Route::get('/dashboard', [EventController::class, 'dashboard'])->name('user-dashboard');
+Route::post('/event', [EventController::class, 'store'])->name('event-store');
+
+Route::get('/detail/{id}', [EventController::class, 'show'])->name('event-show');
+
+Route::get('/event', [EventController::class, 'index'])->name('event-index');
+Route::post('/event', [EventController::class, 'store'])->name('event-store');
+
+Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta-index');
+Route::post('/peserta', [PesertaController::class, 'store'])->name('peserta-store');
+
+Route::get('/eventget', [EventController::class, 'index']);
+
+Route::post('/event/favorite/{event}', [EventController::class, 'toggleFavorite'])->name('event-favorite');
+Route::get('/disukai', [EventController::class, 'favoriteList'])->name('event-favorites');
+
+
 
 
 //INI AUTHENTIFIKASI
@@ -27,11 +50,11 @@ Route::get('/auth/login', function () {
     ]);
 })->name('login');
 
-// Route::get('/auth/daftar', function () {
-//     return view('auth.daftar.daftar', [
-//         'title' => 'Daftar'
-//     ]);
-// });
+Route::get('/auth/daftar', function () {
+    return view('auth.daftar.daftar', [
+        'title' => 'Daftar'
+    ]);
+});
 //INI ADMIN
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard.dashboard', [
@@ -55,16 +78,19 @@ Route::get('/admin/expired', function () {
 });
 
 //INI USER
-Route::get('/user/dashboard', function () {
-    return view('user.dashboard.dash', [
-        'title' => 'Dashboard'
-    ]);
-});
-Route::get('/user/details', function () {
-    return view('user.details.detailevent', [
-        'title' => 'Detail Event'
-    ]);
-});
+Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('dashboard-user');
+
+// Route::get('/user/dashboard', function () {
+//     return view('user.dashboard.dash', [
+//         'title' => 'Dashboard'
+//     ]);
+// });
+
+// Route::get('/user/details', function () {
+//     return view('user.details.detailevent', [
+//         'title' => 'Detail Event'
+//     ]);
+// });
 Route::get('/user/disukai', function () {
     return view('user.disukai.suka', [
         'title' => 'Disukai'
