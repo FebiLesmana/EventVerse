@@ -45,8 +45,8 @@ Route::post('/peserta', [PesertaController::class, 'store'])->name('peserta-stor
 Route::get('/eventget', [EventController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/event/{id}/favorite', [EventController::class, 'toggleFavorite'])->name('event.favorites');
-    Route::get('/disukai', [EventController::class, 'showFavorites'])->name('event.favorites');
+    Route::post('/add-favorite/{id}', [EventController::class, 'toggleFavorite'])->name('event.favorites');
+    Route::get('/user/disukai', [EventController::class, 'showFavorites'])->name('event.favorites');
 });
 
 
@@ -104,11 +104,11 @@ Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('dash
 //         'title' => 'Detail Event'
 //     ]);
 // });
-Route::get('/user/disukai', function () {
-    return view('user.disukai.suka', [
-        'title' => 'Disukai'
-    ]);
-});
+// Route::get('/user/disukai', function () {
+//     return view('user.disukai.suka', [
+//         'title' => 'Disukai'
+//     ]);
+// });
 Route::get('/user/addnote', function () {
     return view('user.addnote.addnote', [
         'title' => 'Addnote'

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ $title }}</title>
   <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
@@ -11,8 +12,6 @@
 
   <!-- CSS iziToast -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css" />
-
-  <script src="/public/js/favorit.js">
 
   <!-- JS iziToast -->
   <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
@@ -33,7 +32,7 @@
 
   <!-- FontAwesome for Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <script src="{{ asset('js/') }}"></script>
+  <script src="{{ asset('js/favorit.js') }}"></script>
   {{-- session --}}
   @if (session('message'))
     @php

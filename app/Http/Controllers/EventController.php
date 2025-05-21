@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorite;
 use App\Models\Eventlist;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -86,26 +88,39 @@ class EventController extends Controller
     }
 
     public function toggleFavorite($id)
-{
-    $user = auth()->user(); // pastikan user login
-    $event = EventList::findOrFail($id);
+    {
+        $user = auth()->user();
 
-    if ($user->favoriteEvents()->where('event_id', $id)->exists()) {
-        $user->favoriteEvents()->detach($id); // hapus dari favorit
-        return response()->json(['status' => 'removed']);
-    } else {
-        $user->favoriteEvents()->attach($id); // tambahkan ke favorit
-        return response()->json(['status' => 'added']);
+        $isFavoriteAlereadyExist = Favorite::where('user_id', $user->id)->where('event_id', $id)->first();
+
+        if($isFavoriteAlereadyExist) {
+            $isFavoriteAlereadyExist->delete();
+
+            return response()->json([
+                'status' => "removed",
+                'message' => 'Successfuly removed from favorite'
+            ]);
+        } else {
+            Favorite::create([
+                'user_id' => $user->id,
+                'event_id' => $id
+            ]);
+
+            return response()->json([
+                'status' => "added",
+                'message' => 'Successfully add to favorite'
+            ]);
+        }
     }
-}
 
-public function showFavorites()
-{
-    $user = auth()->user();
-    $favoriteEvents = $user->favoriteEvents()->latest()->get();
+    public function showFavorites()
+    {
+        $title = "Disukai";
+        $user = auth()->user();
+        $favoriteEvents = Favorite::where('user_id', $user->id)->latest()->get();
 
-    return view('user.disukai.suka', compact('favoriteEvents'));
-}
+        return view('user.disukai.suka', compact('title', 'favoriteEvents'));
+    }
 
 
 }

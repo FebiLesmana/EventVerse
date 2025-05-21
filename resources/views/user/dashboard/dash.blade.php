@@ -44,20 +44,24 @@
   <div class="px-4 space-y-3 mt-3 pb-24">
 
     @foreach ($dataEvent as $item)
-    <a href="/detail/{{ $item->id }}">
     <div class="bg-white rounded-xl shadow-md flex items-center p-3 space-x-3 hover:bg-gray-50 transition">
-    <img src="{{ asset('storage/' . $item->poster) }}" alt="{{ $item->nama }}" class="w-24 h-20 rounded-lg object-cover flex-shrink-0" loading="lazy"/>
-    <div class="flex-grow">
-      <p class="text-blue-500 text-sm font-medium mb-1">{{ $item->waktu }}</p>
-      <p class="text-gray-500 text-xs mb-1">{{ $item->nama }}</p>
-      <h3 class="font-semibold text-lg leading-tight">{{ $item->organizer }}</h3>
+      <a href="/detail/{{ $item->id }}">
+        <img src="{{ asset('storage/' . $item->poster) }}" alt="{{ $item->nama }}" class="w-24 h-20 rounded-lg object-cover flex-shrink-0" loading="lazy"/>
+      </a>
+      <div class="flex-grow">
+        <a href="/detail/{{ $item->id }}">
+          <p class="text-blue-500 text-sm font-medium mb-1">{{ $item->waktu }}</p>
+          <p class="text-gray-500 text-xs mb-1">{{ $item->nama }}</p>
+          <h3 class="font-semibold text-lg leading-tight">{{ $item->organizer }}</h3>
+        </a>
+      </div>
+
+      <button class="ml-auto p-2 rounded-full" type="button" onclick="addtofavorit({{ $item->id }})">
+        <i class="hgi hgi-stroke hgi-favourite"></i>
+      </button>
     </div>
-    <button class="ml-auto p-2 rounded-full" type="button" onclick="addtofavorit({{ $item->id }})">
-    <i class="hgi hgi-stroke hgi-favourite"></i>
-    </button>
-  </div>
-</a>
     @endforeach
+
   </div>
 
   @include('components.nav')
